@@ -19,7 +19,7 @@ const Header = () => {
             <ul className="menu menu-horizontal p-0">
                 <li>
                     <NavLink to="/login">Log In</NavLink>
-                    <NavLink to="/Register">Register</NavLink>
+                    <NavLink to="/register">Register</NavLink>
                 </li>
             </ul>
         </div>
