@@ -8,6 +8,7 @@ import AllServices from './../components/allservices/allservices';
 import ServicesDetails from "../components/servicedetails/servicesdetails";
 import Blog from "../components/blog/blog";
 import Addservice from "../components/addservice/addservice";
+import Reviews from "../components/Review/revews";
 
 export const route = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ export const route = createBrowserRouter([
            {
                 path:"/addservice",
                 element:<Addservice />
+           },
+           {
+                path:"/myrevews",
+                element:<Reviews />
            }
         ]
     },

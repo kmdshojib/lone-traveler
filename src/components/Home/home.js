@@ -1,4 +1,5 @@
 import React from 'react'
+import { PhotoView } from 'react-photo-view'
 import { Link, useLoaderData, useNavigate} from 'react-router-dom'
 
 import "./home.css"
@@ -49,7 +50,11 @@ const Home = () => {
                         return (
                             <div key={_id}>
                                 <div className="card w-96 bg-base-100 shadow-xl mt-10">
-                                <figure><img className='card-img' src={iamgeUrl} alt={title}/></figure>
+                                <figure>
+                                    <PhotoView key={title} src={iamgeUrl}>
+                                        <img className='card-img' src={iamgeUrl} alt={title}/>
+                                    </PhotoView>
+                                </figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{name}</h2>
                                     <p>{descriptionLength}...<Link to={`/servicedetails/${_id}`} className='text-blue-500'>Show more</Link> </p>
