@@ -41,19 +41,19 @@ const Addservice = () => {
             <form className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="servicename" className="block ">Service Name</label>
-                        <input type="text" name="servicename"  placeholder="Please enter Service Name" className="w-full px-4 py-3 rounded-md"  required/>
+                        <input type="text" name="servicename"  placeholder="Please enter Service Name" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="servicetitle" className="block ">Service Title</label>
-                        <input type="text" name="servicetitle"  placeholder="Please enter Service Title" className="w-full px-4 py-3 rounded-md"  required/>
+                        <input type="text" name="servicetitle"  placeholder="Please enter Service Title" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="servicePhotoUrl" className="block ">Service Photo</label>
-                        <input type="text" name="servicePhotoUrl" placeholder="Please enter Service Photo Url" className="w-full px-4 py-3 rounded-md"  required/>
+                        <input type="text" name="servicePhotoUrl" placeholder="Please enter Service Photo Url" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="serviceprice" className="block ">Service Price</label>
-                        <input type="number" name="Serviceprice" placeholder="Please enter Service Price Url" className="w-full px-4 py-3 rounded-md"  required/>
+                        <input type="number" name="Serviceprice" placeholder="Please enter Service Price Url" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="servicedescription" className="block ">Service Description</label>

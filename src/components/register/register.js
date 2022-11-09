@@ -49,22 +49,22 @@ const Register = () => {
     <div className="grid place-items-center mt-40">
          <div className="card login-card">
             <h1 className="text-2xl font-bold text-center">Login</h1>
-            <form onSubmit={handleRegister} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+            <form onSubmit={handleRegister} action="" className="space-y-6 ng-untouched ng-pristine ng-valid ">
                 <div className="space-y-1 text-sm">
                     <label htmlFor="name" className="block ">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Please enter your Name" className="w-full px-4 py-3 rounded-md"  required/>
+                    <input type="text" name="name" id="name" placeholder="Please enter your Name" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="email" className="block ">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Please enter your Email" className="w-full px-4 py-3 rounded-md"  required/>
+                    <input type="email" name="email" id="email" placeholder="Please enter your Email" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="photo" className="block ">Photo Url</label>
-                    <input type="text" name="photo" id="photo" placeholder="Please enter your Name" className="w-full px-4 py-3 rounded-md"  required/>
+                    <input type="text" name="photo" id="photo" placeholder="Please enter your Name" className="w-full px-4 py-3 rounded-md textarea textarea-bordered"  required/>
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="password" className="block">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Please enter your Password" className="w-full px-4 py-3 rounded-md " required/>
+                    <input type="password" name="password" id="password" placeholder="Please enter your Password" className="w-full px-4 py-3 rounded-md textarea textarea-bordered" required/>
                 </div>
                 <button className="block w-full p-3 text-center rounded-sm btn btn-primary">Sign in</button>
             </form>
@@ -79,7 +79,7 @@ const Register = () => {
                 </button>
             </div>
             <p className="text-xs text-center sm:px-6 ">Have an account? 
-                <Link to="/login" className="underline font-bold"> Sign In</Link>
+                <Link to="/login" className="underline font-bold"> Register</Link>
             </p>
         </div>
     </div>
