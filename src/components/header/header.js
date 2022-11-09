@@ -38,6 +38,7 @@ const Header = () => {
             <div className="navbar-end hidden lg:flex mr-2">
                 <ul className="menu menu-horizontal p-0">
                     <li>
+                        <NavLink to="/addservice">Add Service</NavLink>
                         <NavLink to="/blog">Blog</NavLink>
                         {
                             (user && user?.uid) 

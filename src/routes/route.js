@@ -7,6 +7,7 @@ import Login from './../components/login/login';
 import AllServices from './../components/allservices/allservices';
 import ServicesDetails from "../components/servicedetails/servicesdetails";
 import Blog from "../components/blog/blog";
+import Addservice from "../components/addservice/addservice";
 
 export const route = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const route = createBrowserRouter([
            {
                 path:"/blog",
                 element:<Blog />
+           },
+           {
+                path:"/addservice",
+                element:<Addservice />
            }
         ]
     },
