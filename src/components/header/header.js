@@ -19,6 +19,7 @@ const Header = () => {
                 </label>
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
+                         <NavLink to="/blog">Blog</NavLink>
                             {
                                 (user && user?.uid) 
                                 ?
@@ -29,7 +30,7 @@ const Header = () => {
                                 <NavLink to="/register">Register</NavLink>
                                 </> 
                             }
-                        </li>
+                    </li>
                 </ul>
                 </div>
                 <NavLink to="/" className="btn btn-ghost normal-case text-xl">Lone Traveller</NavLink>
@@ -37,6 +38,7 @@ const Header = () => {
             <div className="navbar-end hidden lg:flex mr-2">
                 <ul className="menu menu-horizontal p-0">
                     <li>
+                        <NavLink to="/blog">Blog</NavLink>
                         {
                             (user && user?.uid) 
                             ?

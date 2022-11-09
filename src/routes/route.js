@@ -5,6 +5,8 @@ import Main from "../layout/Main";
 import PostReview from "../post-review/postreview";
 import Login from './../components/login/login';
 import AllServices from './../components/allservices/allservices';
+import ServicesDetails from "../components/servicedetails/servicesdetails";
+import Blog from "../components/blog/blog";
 
 export const route = createBrowserRouter([
     {
@@ -12,25 +14,36 @@ export const route = createBrowserRouter([
         element: <Main />,
         children:[
             {
-                path:"/",
-                element: <Home />,
-                loader: async () => fetch("http://localhost:5000/service")
+               path:"/",
+               element: <Home />,
+               loader: async () => fetch("http://localhost:5000/service")
             },
            {
-            path:"/login",
-            element:<Login />
+                path:"/login",
+                element:<Login />
            },
            {
-            path:"/register",
-            element:<Register />
+               path:"/register",
+               element:<Register />
            },
            {
-            path:"/review",
-            element:<PostReview />
+               path:"/review",
+               element:<PostReview />
            },
            {
-            path:"/allservices",
-            element:<AllServices />
+               path:"/allservices",
+               element:<AllServices />,
+               loader: async () => fetch("http://localhost:5000/allservice")
+           },
+
+           {    
+               path:"/servicedetails/:id",
+               element:<ServicesDetails />,
+               loader:async ({params}) => fetch(`http://localhost:5000/servicedetails/${params.id}`),
+           },
+           {
+                path:"/blog",
+                element:<Blog />
            }
         ]
     },
