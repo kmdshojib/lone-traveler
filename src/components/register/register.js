@@ -5,25 +5,37 @@ import { AuthContext } from '../../context/userContext'
 
 const Register = () => {
 
-    const {createUser,googleSignIn} = useContext(AuthContext)
+    const {createUser,googleSignIn,updateUserProfile} = useContext(AuthContext)
 
     const handleRegister = (e) =>{
         e.preventDefault()
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        // const displayName = form.name.value
+        const displayName = form.name.value
+        const photo = form.photo.value
         
         createUser(email, password)
         .then(result => {
             const user = result.user
-            console.log(user)
+            handleUserProflile(displayName,photo)
             form.reset()
-           
+            console.log(user)
         })
         .catch(error => {
             console.log(error.message)
         })
+
+        // update a user
+        const handleUserProflile = (name,photo) => {
+            const profile = {
+                displayName:name,
+                photoURL:photo
+            }
+            updateUserProfile(profile)
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+        }
 
     }
     const handleGoogleSignIn = () =>{
@@ -45,6 +57,10 @@ const Register = () => {
                 <div className="space-y-1 text-sm">
                     <label htmlFor="email" className="block ">Email</label>
                     <input type="email" name="email" id="email" placeholder="Please enter your Email" className="w-full px-4 py-3 rounded-md"  required/>
+                </div>
+                <div className="space-y-1 text-sm">
+                    <label htmlFor="photo" className="block ">Photo Url</label>
+                    <input type="text" name="photo" id="photo" placeholder="Please enter your Name" className="w-full px-4 py-3 rounded-md"  required/>
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="password" className="block">Password</label>

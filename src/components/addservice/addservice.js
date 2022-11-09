@@ -9,7 +9,30 @@ const Addservice = () => {
         const serviceTitle =  form.servicetitle.value
         const servicePhotoUrl = form.servicePhotoUrl.value
         const servicedescription =  form.servicedescription.value
+        
+        const servicePrice =  form.Serviceprice.value
+
         console.log(serviceName,serviceTitle,servicePhotoUrl,servicedescription)
+
+        const service = {
+            title: serviceTitle,
+            name:serviceTitle,
+            price:servicePrice,
+            iamgeUrl:servicePhotoUrl,
+            decription: servicedescription
+        }
+
+        fetch("http://localhost:5000/addservice",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(service)
+        })
+        .then(res => res.json())
+        .then(() =>{})
+        .catch(err => console.error(err))
+        form.reset()
     }
     return (
 
@@ -27,6 +50,10 @@ const Addservice = () => {
                     <div className="space-y-1 text-sm">
                         <label htmlFor="servicePhotoUrl" className="block ">Service Photo</label>
                         <input type="text" name="servicePhotoUrl" placeholder="Please enter Service Photo Url" className="w-full px-4 py-3 rounded-md"  required/>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="serviceprice" className="block ">Service Price</label>
+                        <input type="number" name="Serviceprice" placeholder="Please enter Service Price Url" className="w-full px-4 py-3 rounded-md"  required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="servicedescription" className="block ">Service Description</label>

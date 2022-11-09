@@ -14,8 +14,9 @@ const ServicesDetails = () => {
                <h2 className='font-semibold text-2xl'>{name}</h2>
                <p className=''>Price:{price}</p>
                <p className=''>{decription}</p>
-            </div>
-      </div>
+          </div>
+          
+        </div>
     )
 }
 export default ServicesDetails
