@@ -1,6 +1,7 @@
 import React from 'react'
 import useTitle from '../../hooks/usetitle'
 import './adddescription.css'
+import { toast } from 'react-toastify';
 
 const Addservice = () => {
     useTitle("Add service")
@@ -32,13 +33,15 @@ const Addservice = () => {
             body: JSON.stringify(service)
         })
         .then(res => res.json())
-        .then(() =>{})
+        .then((data) =>{
+            data.acknowledged && toast.success("Service added successfully")
+        })
         .catch(err => console.error(err))
         form.reset()
     }
     return (
 
-        <div onSubmit={handleSubmitService} className='grid place-items-center mt-20'>
+        <div onSubmit={handleSubmitService} className='grid place-items-center mt-20 mb-5'>
             <div className="card login-card flex justify-center">
             <form className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
