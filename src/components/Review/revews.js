@@ -3,15 +3,26 @@ import { AuthContext } from '../../context/userContext'
 
 
 const Reviews = () => {
-    const {user} = useContext(AuthContext)
+    const {user,logOut} = useContext(AuthContext)
     const [reviews,setReviews] = useState(null)
     
+    // fetch data and verfy JWT 
+
     useEffect(()=>{
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-        .then(res => res.json())
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`,{
+            headers:{
+                authorization:`Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        .then(res =>{
+            if(res.status === 401 || res.status === 403){
+                logOut();
+            }
+            return res.json()
+        })
         .then(data => setReviews(data))
         .catch(err => console.log(err))
-    },[user?.email])
+    },[user?.email,logOut])
 
     // **** updating Review ********////////
 
@@ -64,11 +75,11 @@ const Reviews = () => {
           {
             
             reviews?.map((({name,review,photoUrl,_id})=> (
-                <div className="card w-96 bg-base-100 shadow-xl mt-5">
+                <div key={_id} className="card w-96 bg-base-100 shadow-xl mt-5">
                     <div className="card-body">
                         <div className="flex ">
                             <div className="flex">
-                                <img alt="ProfileImage" src={photoUrl} className="w-7 rounded-full"/>
+                                <img alt="img" src={photoUrl} className="w-7 rounded-full"/>
                                 <h2 className="card-title ml-3">{name}</h2>
                             </div>
                             <p className="text-end underline text-blue-600 cursor-pointer" onClick={() => handleDelete(_id)}>Delete</p>

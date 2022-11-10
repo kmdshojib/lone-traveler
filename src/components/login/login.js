@@ -24,8 +24,26 @@ const Login = () => {
         signIn(email,password)
         .then(result =>{
             const user  = result.user
-            console.log(user)
-            navigate(from, {replace: true});
+           
+            const currentUser = {
+                email: user.email
+            }
+            console.log(currentUser)
+            // get JWT
+            fetch("http://localhost:5000/jwt",{
+                method: "POST",
+                headers:{
+                    "content-type": "application/JSON",
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                localStorage.setItem("token", data.token)
+                navigate(from, {replace: true});
+            })
+            .catch(err => console.error(err))
             form.reset()
         })
         .catch(err =>{
@@ -36,9 +54,24 @@ const Login = () => {
     const handleGoogleSignIn = () =>{
         googleSignIn()
         .then(result=>{
-            const user = result.user
-            console.log(user)
-            navigate(from, {replace: true});
+            const user = result.user.email
+            const currentUser = {
+                email: user
+            }
+            fetch("http://localhost:5000/jwt",{
+                method: "POST",
+                headers:{
+                    "content-type": "application/JSON",
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                localStorage.setItem("token", data.token)
+                navigate(from, {replace: true});
+            })
+            .catch(err => console.error(err))
         })
         .catch(err=>{
             console.log(err)

@@ -1,11 +1,15 @@
 import React, { useContext } from 'react'
 import { FcGoogle } from 'react-icons/fc'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/userContext'
 
 const Register = () => {
 
     const {createUser,googleSignIn,updateUserProfile} = useContext(AuthContext)
+    // React router Dom
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
     const handleRegister = (e) =>{
         e.preventDefault()
@@ -19,6 +23,7 @@ const Register = () => {
         .then(result => {
             const user = result.user
             handleUserProflile(displayName,photo)
+            navigate(from, {replace: true});
             form.reset()
             console.log(user)
         })
@@ -40,8 +45,27 @@ const Register = () => {
     }
     const handleGoogleSignIn = () =>{
         googleSignIn()
-        .then(()=>{})
-        .catch((err)=>{
+        .then(result=>{
+            const user = result.user.email
+            const currentUser = {
+                email: user
+            }
+            fetch("http://localhost:5000/jwt",{
+                method: "POST",
+                headers:{
+                    "content-type": "application/JSON",
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                localStorage.setItem("token", data.token)
+                navigate(from, {replace: true});
+            })
+            .catch(err => console.error(err))
+        })
+        .catch(err=>{
             console.log(err)
         })
     }
