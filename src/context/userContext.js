@@ -18,7 +18,7 @@ const auth = getAuth(app)
 
 const UserContext = ({children}) => {
     const [user,setUser] = useState(null)
-    const[loading , setLaoding] = useState(false)
+    const[loading , setLaoding] = useState(true)
 
     const provider = new GoogleAuthProvider()
     // register an user
@@ -51,7 +51,7 @@ const UserContext = ({children}) => {
         return () => unSubscribe()
     },[])
     // context
-    const authInfo ={createUser,signIn,user,logOut,googleSignIn,updateUserProfile}
+    const authInfo ={createUser,signIn,user,logOut,googleSignIn,updateUserProfile,loading}
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     )

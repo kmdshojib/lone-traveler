@@ -31,7 +31,7 @@ const ServicesDetails = () => {
         body: JSON.stringify(reviewData)
     })
     .then(res => res.json())
-    .then(() =>{})
+    .then((data) => data && form.reset())
     .catch(err => console.error(err))
     }
     return (

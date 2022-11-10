@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from './../../context/userContext';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -8,7 +8,10 @@ import './login.css'
 const Login = () => {
 
     const {signIn,googleSignIn } = useContext(AuthContext)
+    // react router dom 
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
     const handleSubmitlogin = (e) =>{
         e.preventDefault()
@@ -22,7 +25,7 @@ const Login = () => {
         .then(result =>{
             const user  = result.user
             console.log(user)
-            navigate("/")
+            navigate(from, {replace: true});
             form.reset()
         })
         .catch(err =>{
@@ -35,13 +38,13 @@ const Login = () => {
         .then(result=>{
             const user = result.user
             console.log(user)
-            navigate("/")
+            navigate(from, {replace: true});
         })
         .catch(err=>{
             console.log(err)
         })
     }
-
+    
   return (
     <div className="grid place-items-center mt-40">
          <div className="card login-card">

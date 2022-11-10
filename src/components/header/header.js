@@ -23,7 +23,10 @@ const Header = () => {
                             {
                                 (user && user?.uid) 
                                 ?
-                                <p onClick={handleLogOut}>Log Out</p>
+                                <>
+                                    <NavLink to="/myreviews">My Reviews</NavLink>
+                                    <p onClick={handleLogOut}>Log Out</p>
+                                </>
                                 :
                                 <>
                                 <NavLink to="/login">Log In</NavLink>
@@ -43,7 +46,10 @@ const Header = () => {
                         {
                             (user && user?.uid) 
                             ?
-                            <p onClick={handleLogOut}>Log Out</p>
+                            <>
+                                <NavLink to="/myreviews">My Reviews</NavLink>
+                                <p onClick={handleLogOut}>Log Out</p>
+                            </>
                             :
                             <>
                             <NavLink to="/login">Log In</NavLink>
