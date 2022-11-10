@@ -7,7 +7,7 @@ const AllServices = () => {
     const serviceData = useLoaderData()
     const navigate = useNavigate()
     return (
-        <div className="container mx-auto px-5 grid grid-cols-3">
+        <div className="container mx-auto px-5 grid grid-cols-3 resposive-cards">
             {
                     serviceData.map(({_id,iamgeUrl,price,name,decription,title}) =>{
                         const descriptionLength = decription?.length >100 && decription?.split("",100)

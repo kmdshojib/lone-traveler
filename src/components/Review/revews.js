@@ -5,8 +5,7 @@ import { AuthContext } from '../../context/userContext'
 const Reviews = () => {
     const {user} = useContext(AuthContext)
     const [reviews,setReviews] = useState(null)
-    console.log(reviews,user?.email)
-
+    
     useEffect(()=>{
         fetch(`http://localhost:5000/reviews?email=${user?.email}`)
         .then(res => res.json())
@@ -14,9 +13,31 @@ const Reviews = () => {
         .catch(err => console.log(err))
     },[user?.email])
 
-    // const handleUpdate = () => {
+    // **** updating Review ********////////
 
-    // }
+    const handleUpdate = (id) => {
+        const getReview = window.prompt("Please Update your Review")
+
+        if (getReview) {
+            fetch(`http://localhost:5000/reviews/${id}`,{
+                method:"PATCH",
+                headers:{
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({review:getReview})
+            })
+            .then(res => res.json())
+            .then(data => {
+                data.acknowledged && 
+                fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+                .then(res => res.json())
+                .then(data => setReviews(data))
+                .catch(err => console.log(err))
+            })
+            .catch(err => console.error(err))
+        }
+    }
+    // deleting a review  /////
 
     const handleDelete = id => {
         console.log(id)
@@ -39,7 +60,7 @@ const Reviews = () => {
     }
 
     return (
-        <div className="mt-5">
+        <div className="mt-5 ">
           {
             
             reviews?.map((({name,review,photoUrl,_id})=> (
@@ -51,7 +72,7 @@ const Reviews = () => {
                                 <h2 className="card-title ml-3">{name}</h2>
                             </div>
                             <p className="text-end underline text-blue-600 cursor-pointer" onClick={() => handleDelete(_id)}>Delete</p>
-                            <p className="text-end underline text-blue-600 cursor-pointer">Edit</p>
+                            <p className="ml-3 text-end underline text-blue-600 cursor-pointer" onClick={()=> handleUpdate(_id)}>Edit</p>
                         </div>
                         <p>{review}</p>
                         <div className="card-actions justify-end">
@@ -60,6 +81,7 @@ const Reviews = () => {
                 </div>
             )))
           }
+            
         </div>
     )
 }

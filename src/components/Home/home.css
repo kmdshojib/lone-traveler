@@ -3,3 +3,7 @@
     height: 500px;
     object-fit: cover;
 }
+.text-abs{
+    top:50%;
+    left:35%;
+}

@@ -14,6 +14,7 @@ const Home = () => {
         <div className="carousel w-full">
             <div id="slide1" className="carousel-item relative w-full">
                 <img alt="img-silder" src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="w-full image-size" />
+               
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide4" className="btn btn-circle">❮</a> 
                 <a href="#slide2" className="btn btn-circle">❯</a>
@@ -21,6 +22,7 @@ const Home = () => {
             </div> 
             <div id="slide2" className="carousel-item relative w-full">
                 <img alt="img-silder" src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="w-full image-size" />
+                <p className="absolute text-abs text-2xl font-bold ">"Travel is the healthiest addiction"</p>
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide1" className="btn btn-circle">❮</a> 
                 <a href="#slide3" className="btn btn-circle">❯</a>
@@ -43,7 +45,7 @@ const Home = () => {
         </div>
             {/* service secttion */}
             <h1 className="text-2xl text-center">Services that I provide</h1>
-            <div className='container mx-auto px-4 flex justify-around'>
+            <div className='container mx-auto px-4 grid grid-cols-3 resposive-cards'>
                {
                     serviceData.map(({_id,iamgeUrl,price,name,decription,title}) =>{
                         const descriptionLength = decription?.length >100 && decription?.split("",100)
