@@ -7,7 +7,9 @@ import UserContext from './context/userContext';
 // react photo view
 import { PhotoProvider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-
+// react tosat
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +17,7 @@ root.render(
     <UserContext>
       <PhotoProvider>
         <App />
+        <ToastContainer />
       </PhotoProvider>
     </UserContext>
   </React.StrictMode>

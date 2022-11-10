@@ -33,14 +33,19 @@ const Reviews = () => {
             fetch(`http://localhost:5000/reviews/${id}`,{
                 method:"PATCH",
                 headers:{
-                    "content-type": "application/json"
+                    "content-type": "application/json",
+                    authorization:`Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify({review:getReview})
             })
             .then(res => res.json())
             .then(data => {
                 data.acknowledged && 
-                fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+                fetch(`http://localhost:5000/reviews?email=${user?.email}`,{
+                    headers:{
+                    authorization:`Bearer ${localStorage.getItem("token")}`
+                    }
+                })
                 .then(res => res.json())
                 .then(data => setReviews(data))
                 .catch(err => console.log(err))
@@ -55,7 +60,8 @@ const Reviews = () => {
         const confirm = window.confirm('Are you sure you want to delete this Review?')
         if (confirm){
             fetch(`http://localhost:5000/reviews/${id}`,{
-                method: 'DELETE'
+                method: 'DELETE',
+                authorization:`Bearer ${localStorage.getItem("token")}`
             })
             .then(res => res.json())
             .then(data => {
@@ -71,7 +77,7 @@ const Reviews = () => {
     }
 
     return (
-        <div className="mt-5 ">
+        <div className="mt-5 container mx-auto">
           {
             
             reviews?.map((({name,review,photoUrl,_id})=> (

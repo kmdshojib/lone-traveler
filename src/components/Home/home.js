@@ -13,7 +13,7 @@ const Home = () => {
             {/* slider */}
         <div className="carousel w-full">
             <div id="slide1" className="carousel-item relative w-full">
-                <img alt="img-silder" src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="w-full image-size" />
+                <img alt="img-silder" src="https://images.pexels.com/photos/7539771/pexels-photo-7539771.jpeg?cs=srgb&dl=pexels-roman-odintsov-7539771.jpg&fm=jpg&_gl=1*1bn4xfx*_ga*MTcyOTgyNTMwNi4xNjY4MDg5NTA0*_ga_8JE65Q40S6*MTY2ODA4OTUwNS4xLjEuMTY2ODA4OTY1MS4wLjAuMA.." className="w-full image-size" />
                
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide4" className="btn btn-circle">❮</a> 
@@ -21,7 +21,7 @@ const Home = () => {
                 </div>
             </div> 
             <div id="slide2" className="carousel-item relative w-full">
-                <img alt="img-silder" src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="w-full image-size" />
+                <img alt="img-silder" src="https://images.pexels.com/photos/2418400/pexels-photo-2418400.jpeg?cs=srgb&dl=pexels-abhinav-atwal-2418400.jpg&fm=jpg&_gl=1*1waelha*_ga*MTcyOTgyNTMwNi4xNjY4MDg5NTA0*_ga_8JE65Q40S6*MTY2ODA4OTUwNS4xLjEuMTY2ODA4OTUzMC4wLjAuMA.." className="w-full image-size" />
                 <p className="absolute text-abs text-2xl font-bold ">"Travel is the healthiest addiction"</p>
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide1" className="btn btn-circle">❮</a> 
@@ -35,16 +35,10 @@ const Home = () => {
                 <a href="#slide4" className="btn btn-circle">❯</a>
                 </div>
             </div> 
-            {/* <div id="slide4" className="carousel-item relative w-full">
-                <img alt="img-silder" src="https://placeimg.com/800/200/arch" className="w-full" />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide3" className="btn btn-circle">❮</a> 
-                <a href="#slide1" className="btn btn-circle">❯</a>
-                </div>
-            </div> */}
+            
         </div>
             {/* service secttion */}
-            <h1 className="text-2xl text-center">Services that I provide</h1>
+            <h1 className="mt-10 text-2xl text-center font-bold">Services</h1>
             <div className='container mx-auto px-4 grid grid-cols-3 resposive-cards'>
                {
                     serviceData.map(({_id,iamgeUrl,price,name,decription,title}) =>{
@@ -73,6 +67,34 @@ const Home = () => {
             </div>
             <div className="flex justify-center mt-10 mb-10">
                 <button className="btn btn-primary" onClick={()=>navigate("/allservices")}>All services</button>
+            </div>
+            {/* palaces to visit*/}
+            <div className="container mx-auto px-4 flex justify-around mt-20 md:flex-col sm:flex-col explore">
+                <div className="mt-40">
+                    <p>LET THE JOURNEY BEGIN</p>
+                    <h1 className="mt-10 text-5xl font-bold">Explore Now</h1>
+                    <p className='mt-5 text-w'>
+                    See the world. It's more fantastic than any dream made or paid for in factories. Ask for no guarantees, ask for no security.
+                    In any case, a little danger is a small price to pay for ridding a place of tourists.
+                    </p>
+                    <button className='btn btn-primary mt-10 sm:mb-10 explore-btn'>Explore Now</button>
+                </div>
+               <div>
+                    <div>
+                        <img className="rounded" alt="travel" src="https://demo.sociolib.com/tracks/wp-content/uploads/sites/4/2021/09/mapping.jpg"/>
+                    </div>
+               </div>
+            </div>
+            {/* Exlpore Dream discover */}
+            <div className="background-image flex justify-around mt-20">
+                <div>
+                    <h1 className="font-black text-5xl underline mb-8">Dream.</h1>
+                    <h1 className="font-black text-5xl underline mb-8">Explore.</h1>
+                    <h1 className="font-black text-5xl underline mb-8">Discover.</h1>
+                </div>
+                <div>
+                    <button className="btn mt-20">Let's go</button>
+                </div>
             </div>
         </div>
     )

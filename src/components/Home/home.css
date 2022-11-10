@@ -7,3 +7,21 @@
     top:50%;
     left:35%;
 }
+.background-image{
+    background: url("https://demo.sociolib.com/track/wp-content/uploads/sites/4/2021/09/jeep-road.jpg");
+    height: 833px;
+    width: 100%;
+    background-size: cover;
+}
+
+.text-w{
+    width:400px;
+}
+@media screen and (max-width:649px){
+    .explore{
+        flex-direction: column;
+    }
+    .explore-btn{
+        margin-bottom: 20px;
+    }
+}

@@ -19,12 +19,14 @@ const Header = () => {
                 </label>
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
-                         <NavLink to="/blog">Blog</NavLink>
+                            <NavLink to="/">Home</NavLink>
+                            <NavLink to="/blog">Blog</NavLink>
                             {
                                 (user && user?.uid) 
                                 ?
                                 <>
                                     <NavLink to="/myreviews">My Reviews</NavLink>
+                                    <NavLink to="/addservice">Add Service</NavLink>
                                     <p onClick={handleLogOut}>Log Out</p>
                                 </>
                                 :
@@ -41,13 +43,14 @@ const Header = () => {
             <div className="navbar-end hidden lg:flex mr-2">
                 <ul className="menu menu-horizontal p-0">
                     <li>
-                        <NavLink to="/addservice">Add Service</NavLink>
+                        <NavLink to="/">Home</NavLink>
                         <NavLink to="/blog">Blog</NavLink>
                         {
                             (user && user?.uid) 
                             ?
                             <>
                                 <NavLink to="/myreviews">My Reviews</NavLink>
+                                <NavLink to="/addservice">Add Service</NavLink>
                                 <p onClick={handleLogOut}>Log Out</p>
                             </>
                             :

@@ -1,5 +1,6 @@
-import React, { useContext } from "react"
-import { useLoaderData } from "react-router-dom";
+import React, { useContext,useState,useEffect } from "react"
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../context/userContext";
 import "./service.css"
 
@@ -7,6 +8,22 @@ import "./service.css"
 const ServicesDetails = () => {
     const {user} = useContext(AuthContext)
     const serviceDetails = useLoaderData()
+    const [allReviews, setAllReviews] = useState(null)
+
+    const navigate = useNavigate()
+
+    const handleNavate = () =>{
+      toast.warning("Please Login to add your review!")
+      navigate("/login")
+    }
+
+    useEffect(()=>{
+      fetch("http://localhost:5000/allreviews")
+      .then(response => response.json())
+      .then(data => setAllReviews(data))
+      .catch(err => console.error(err))
+    },[])
+
     console.log(serviceDetails)
     const {name,iamgeUrl,price,decription} = serviceDetails
     const handleReviewSubmit = (e) => {
@@ -66,10 +83,29 @@ const ServicesDetails = () => {
           </div>
           :
           <div className="flex justify-center mt-10 mb-10">
-            <button  className="btn btn-primary">Add a review</button> 
+            <button  className="btn btn-primary" onClick={handleNavate}>Add a review</button> 
           </div>
-          
           }
+          {/* Reviews */}
+          <div className="container mx-auto grid grid-cols-3 ml-10 sm:grid-cols-3">
+            {
+              allReviews?.map(review => (
+                <div key={review._id} className="card w-96 bg-base-100 shadow-xl mt-5">
+                      <div className="card-body">
+                          <div className="flex ">
+                              <div className="flex">
+                                  <img alt="img" src={review?.photoUrl} className="w-7 rounded-full"/>
+                                  <h2 className="card-title ml-3">{review?.userName}</h2>
+                              </div>
+                          </div>
+                          <p>{review?.review}</p>
+                          <div className="card-actions justify-end">
+                          </div>
+                      </div>
+                  </div>
+              ))
+            }
+            </div>
         </div>
     )
 }
