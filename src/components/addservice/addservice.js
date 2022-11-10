@@ -1,7 +1,9 @@
 import React from 'react'
+import useTitle from '../../hooks/usetitle'
 import './adddescription.css'
 
 const Addservice = () => {
+    useTitle("Add service")
     const handleSubmitService =(event)=>{
         event.preventDefault();
         const form = event.target
@@ -22,7 +24,7 @@ const Addservice = () => {
             decription: servicedescription
         }
 
-        fetch("http://localhost:5000/addservice",{
+        fetch("https://travelia-server-kmdshojib.vercel.app/addservice",{
             method: "POST",
             headers: {
                 "content-type": "application/json"

@@ -19,7 +19,7 @@ export const route = createBrowserRouter([
             {
                path:"/",
                element: <Home />,
-               loader: async () => fetch("http://localhost:5000/service")
+               loader: async () => fetch("https://travelia-server-kmdshojib.vercel.app/service")
             },
            {
                 path:"/login",
@@ -36,13 +36,13 @@ export const route = createBrowserRouter([
            {
                path:"/allservices",
                element:<AllServices />,
-               loader: async () => fetch("http://localhost:5000/allservice")
+               loader: async () => fetch("https://travelia-server-kmdshojib.vercel.app/allservice")
            },
 
            {    
                path:"/servicedetails/:id",
                element:<ServicesDetails />,
-               loader:async ({params}) => fetch(`http://localhost:5000/servicedetails/${params.id}`),
+               loader:async ({params}) => fetch(`https://travelia-server-kmdshojib.vercel.app/servicedetails/${params.id}`),
            },
            {
                 path:"/blog",

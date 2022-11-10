@@ -4,9 +4,10 @@ import { AuthContext } from './../../context/userContext';
 import { FcGoogle } from 'react-icons/fc';
 
 import './login.css'
+import useTitle from '../../hooks/usetitle';
 
 const Login = () => {
-
+    useTitle("Log In")
     const {signIn,googleSignIn } = useContext(AuthContext)
     // react router dom 
     const navigate = useNavigate()
@@ -30,7 +31,7 @@ const Login = () => {
             }
             console.log(currentUser)
             // get JWT
-            fetch("http://localhost:5000/jwt",{
+            fetch("https://travelia-server-kmdshojib.vercel.app/jwt",{
                 method: "POST",
                 headers:{
                     "content-type": "application/JSON",
@@ -58,7 +59,7 @@ const Login = () => {
             const currentUser = {
                 email: user
             }
-            fetch("http://localhost:5000/jwt",{
+            fetch("https://travelia-server-kmdshojib.vercel.app/jwt",{
                 method: "POST",
                 headers:{
                     "content-type": "application/JSON",

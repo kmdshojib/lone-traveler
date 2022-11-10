@@ -4,8 +4,8 @@
     object-fit: cover;
 }
 .text-abs{
-    top:50%;
-    left:35%;
+    top:30%;
+    left:25%
 }
 .background-image{
     background: url("https://demo.sociolib.com/track/wp-content/uploads/sites/4/2021/09/jeep-road.jpg");
@@ -17,6 +17,9 @@
 .text-w{
     width:400px;
 }
+.explore{
+    flex-direction: row;
+}
 @media screen and (max-width:649px){
     .explore{
         flex-direction: column;
@@ -24,4 +27,11 @@
     .explore-btn{
         margin-bottom: 20px;
     }
+}
+@media screen and (max-width:992px){
+    .explore-img{
+        margin-top: 50px;
+        margin-left: 10px;
+    }
+        
 }

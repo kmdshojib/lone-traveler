@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/userContext'
+import useTitle from '../../hooks/usetitle'
 
 
 const Reviews = () => {
     const {user,logOut} = useContext(AuthContext)
     const [reviews,setReviews] = useState(null)
     
-    // fetch data and verfy JWT 
+    useTitle("Reviews")
 
+    // fetch data and verfy JWT 
+   
     useEffect(()=>{
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`,{
+        fetch(`https://travelia-server-kmdshojib.vercel.app/reviews?email=${user?.email}`,{
             headers:{
                 authorization:`Bearer ${localStorage.getItem("token")}`
             }
@@ -30,7 +33,7 @@ const Reviews = () => {
         const getReview = window.prompt("Please Update your Review")
 
         if (getReview) {
-            fetch(`http://localhost:5000/reviews/${id}`,{
+            fetch(`https://travelia-server-kmdshojib.vercel.app/reviews/${id}`,{
                 method:"PATCH",
                 headers:{
                     "content-type": "application/json",
@@ -41,7 +44,7 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => {
                 data.acknowledged && 
-                fetch(`http://localhost:5000/reviews?email=${user?.email}`,{
+                fetch(`https://travelia-server-kmdshojib.vercel.app/reviews?email=${user?.email}`,{
                     headers:{
                     authorization:`Bearer ${localStorage.getItem("token")}`
                     }
@@ -59,7 +62,7 @@ const Reviews = () => {
         console.log(id)
         const confirm = window.confirm('Are you sure you want to delete this Review?')
         if (confirm){
-            fetch(`http://localhost:5000/reviews/${id}`,{
+            fetch(`https://travelia-server-kmdshojib.vercel.app/reviews/${id}`,{
                 method: 'DELETE',
                 authorization:`Bearer ${localStorage.getItem("token")}`
             })
@@ -77,7 +80,7 @@ const Reviews = () => {
     }
 
     return (
-        <div className="mt-5 container mx-auto">
+        <div className="mt-5 container mx-auto grid grid-cols-3 review-hight mb-5 ml-5 resposive-cards">
           {
             
             reviews?.map((({name,review,photoUrl,_id})=> (

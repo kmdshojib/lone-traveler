@@ -2,6 +2,7 @@ import React, { useContext,useState,useEffect } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/userContext";
+import useTitle from "../../hooks/usetitle";
 import "./service.css"
 
 
@@ -11,23 +12,26 @@ const ServicesDetails = () => {
     const [allReviews, setAllReviews] = useState(null)
 
     const navigate = useNavigate()
-
+    useTitle("Service Details")
     const handleNavate = () =>{
       toast.warning("Please Login to add your review!")
       navigate("/login")
     }
 
     useEffect(()=>{
-      fetch("http://localhost:5000/allreviews")
+      fetch("https://travelia-server-kmdshojib.vercel.app/allreviews")
       .then(response => response.json())
-      .then(data => setAllReviews(data))
+      .then(data => {
+        const filtered = data.filter(review => review?.name === serviceDetails.name)
+        setAllReviews(filtered)
+      })
       .catch(err => console.error(err))
-    },[])
+    },[serviceDetails])
 
     console.log(serviceDetails)
     const {name,iamgeUrl,price,decription} = serviceDetails
+
     const handleReviewSubmit = (e) => {
-      e.preventDefault()
       const form = e.target
       const review = form.review.value
       const email = form.email.value
@@ -41,7 +45,7 @@ const ServicesDetails = () => {
         photoUrl: user.photoURL
 
       }
-      fetch("http://localhost:5000/addReview",{
+      fetch("https://travelia-server-kmdshojib.vercel.app/addReview",{
         method: "POST",
         headers: {
             "content-type": "application/json"
@@ -49,16 +53,20 @@ const ServicesDetails = () => {
         body: JSON.stringify(reviewData)
     })
     .then(res => res.json())
-    .then((data) => data && form.reset())
+    .then((data) => {
+      data && form.reset()
+      window.reload()
+    })
     .catch(err => console.error(err))
     }
+    
     return (
       <div>
         <div className="service-card container mx-auto flex justify-center flex-col">
                <img alt="img" src={iamgeUrl}  className=""/>
-               <h2 className="font-semibold text-2xl">{name}</h2>
-               <p className="">Price:{price}</p>
-               <p className="">{decription}</p>
+               <h2 className="font-semibold text-2xl m-5">{name}</h2>
+               <p className="m-5 font-bold">Price: ${price}</p>
+               <p className="m-5 mb-10">{decription}</p>
           </div>
           {/* Review section */}
           {
@@ -87,7 +95,7 @@ const ServicesDetails = () => {
           </div>
           }
           {/* Reviews */}
-          <div className="container mx-auto grid grid-cols-3 ml-10 sm:grid-cols-3">
+          <div className="container mx-auto grid grid-cols-3 ml-10 sm:grid-cols-3 mb-10">
             {
               allReviews?.map(review => (
                 <div key={review._id} className="card w-96 bg-base-100 shadow-xl mt-5">
@@ -98,6 +106,7 @@ const ServicesDetails = () => {
                                   <h2 className="card-title ml-3">{review?.userName}</h2>
                               </div>
                           </div>
+                          <p>{review?.name}</p>
                           <p>{review?.review}</p>
                           <div className="card-actions justify-end">
                           </div>

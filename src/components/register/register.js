@@ -2,15 +2,16 @@ import React, { useContext } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/userContext'
+import useTitle from './../../hooks/usetitle';
 
 const Register = () => {
 
-    const {createUser,googleSignIn,updateUserProfile} = useContext(AuthContext)
+    const {createUser,googleSignIn,updateUserProfile,logOut} = useContext(AuthContext)
     // React router Dom
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/';
-
+    useTitle("Register")
     const handleRegister = (e) =>{
         e.preventDefault()
         const form = e.target
@@ -23,7 +24,8 @@ const Register = () => {
         .then(result => {
             const user = result.user
             handleUserProflile(displayName,photo)
-            navigate(from, {replace: true});
+            logOut()
+            navigate("/login");
             form.reset()
             console.log(user)
         })
@@ -50,7 +52,7 @@ const Register = () => {
             const currentUser = {
                 email: user
             }
-            fetch("http://localhost:5000/jwt",{
+            fetch("https://travelia-server-kmdshojib.vercel.app/jwt",{
                 method: "POST",
                 headers:{
                     "content-type": "application/JSON",
@@ -90,7 +92,7 @@ const Register = () => {
                     <label htmlFor="password" className="block">Password</label>
                     <input type="password" name="password" id="password" placeholder="Please enter your Password" className="w-full px-4 py-3 rounded-md textarea textarea-bordered" required/>
                 </div>
-                <button className="block w-full p-3 text-center rounded-sm btn btn-primary">Sign in</button>
+                <button className="block w-full p-3 text-center rounded-sm btn btn-primary">Register</button>
             </form>
             <div className="flex items-center pt-4 space-x-1">
                 <div className="flex-1 h-px sm:w-16 "></div>

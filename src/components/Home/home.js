@@ -1,6 +1,7 @@
 import React from 'react'
 import { PhotoView } from 'react-photo-view'
 import { Link, useLoaderData, useNavigate} from 'react-router-dom'
+import useTitle from '../../hooks/usetitle'
 
 import "./home.css"
 
@@ -8,6 +9,7 @@ import "./home.css"
 const Home = () => {
     const serviceData = useLoaderData()
     const navigate = useNavigate()
+    useTitle("Lone Traveler | Home")
     return (
         <div>
             {/* slider */}
@@ -22,7 +24,7 @@ const Home = () => {
             </div> 
             <div id="slide2" className="carousel-item relative w-full">
                 <img alt="img-silder" src="https://images.pexels.com/photos/2418400/pexels-photo-2418400.jpeg?cs=srgb&dl=pexels-abhinav-atwal-2418400.jpg&fm=jpg&_gl=1*1waelha*_ga*MTcyOTgyNTMwNi4xNjY4MDg5NTA0*_ga_8JE65Q40S6*MTY2ODA4OTUwNS4xLjEuMTY2ODA4OTUzMC4wLjAuMA.." className="w-full image-size" />
-                <p className="absolute text-abs text-2xl font-bold ">"Travel is the healthiest addiction"</p>
+                <p className="absolute text-abs text-5xl font-bold ">"Travel is the healthiest addiction."</p>
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide1" className="btn btn-circle">❮</a> 
                 <a href="#slide3" className="btn btn-circle">❯</a>
@@ -39,7 +41,7 @@ const Home = () => {
         </div>
             {/* service secttion */}
             <h1 className="mt-10 text-2xl text-center font-bold">Services</h1>
-            <div className='container mx-auto px-4 grid grid-cols-3 resposive-cards'>
+            <div className='container mx-auto px-4 grid grid-cols-3 resposive-cards ml-10'>
                {
                     serviceData.map(({_id,iamgeUrl,price,name,decription,title}) =>{
                         const descriptionLength = decription?.length >100 && decription?.split("",100)
@@ -54,7 +56,7 @@ const Home = () => {
                                 <div className="card-body">
                                     <h2 className="card-title">{name}</h2>
                                     <p>{descriptionLength}...<Link to={`/servicedetails/${_id}`} className='text-blue-500'>Show more</Link> </p>
-                                    <p>Price: {price}</p>
+                                    <p className='font-bold'>Price: ${price}</p>
                                     <div className="card-actions justify-end">
                                         <button className="btn btn-primary" onClick={()=>navigate(`/servicedetails/${_id}`)}>Details</button>
                                     </div>
@@ -69,7 +71,7 @@ const Home = () => {
                 <button className="btn btn-primary" onClick={()=>navigate("/allservices")}>All services</button>
             </div>
             {/* palaces to visit*/}
-            <div className="container mx-auto px-4 flex justify-around mt-20 md:flex-col sm:flex-col explore">
+            <div className="container mx-auto px-4 flex justify-around mt-20 md:flex-col explore">
                 <div className="mt-40">
                     <p>LET THE JOURNEY BEGIN</p>
                     <h1 className="mt-10 text-5xl font-bold">Explore Now</h1>
@@ -81,7 +83,7 @@ const Home = () => {
                 </div>
                <div>
                     <div>
-                        <img className="rounded" alt="travel" src="https://demo.sociolib.com/tracks/wp-content/uploads/sites/4/2021/09/mapping.jpg"/>
+                        <img className="rounded explore-img" alt="travel" src="https://demo.sociolib.com/tracks/wp-content/uploads/sites/4/2021/09/mapping.jpg"/>
                     </div>
                </div>
             </div>
