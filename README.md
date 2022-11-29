@@ -1,7 +1,7 @@
 
-# Lone Traveller-site
+# Lone Traveller-client 
 
-This is a clinet site for an travel guide website called lone traveller.
+This is a client site for an travel guide website called lone traveler.
 
 # Functions
 
