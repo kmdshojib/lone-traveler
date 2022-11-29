@@ -1,5 +1,5 @@
 
-# Lone Traveller-client 
+# Lone Traveler-client 
 
 This is a client site for an travel guide website called lone traveler.
 
